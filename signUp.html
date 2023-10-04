@@ -1,0 +1,114 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <script src='file:///android_asset/app.js'></script>
+    <link rel="stylesheet" href="login.css">
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+    </style>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+     
+     
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+
+    
+</head>
+	
+<body>
+
+
+
+
+
+      <image class="icon" src="https://cdn3.iconfinder.com/data/icons/modern-3d-illustration-on-various-topics/128/7.png"></image>
+
+
+
+
+  <form class="form">
+        
+            <p class="form-title">Create An Account</p>
+           
+            <div class="input-container">
+                 <input placeholder="Enter email" type="email" id="emailUp">
+            </div>
+            
+            <div class="input-container">
+                 <input placeholder="Enter password" type="password" id="passwordUp">
+            </div>
+         
+
+        
+   </form>
+
+
+            <button class="submit" onClick="signUp()"> SignUp </button>
+
+
+        <p class="signup-link"> No account? <a href="">Sign up</a> </p>
+
+<script>
+
+function signUp(){
+    
+ 
+ 
+      var firebaseConfig = {
+      apiKey: "AIzaSyD09GeejzBofXCWBs_GBj8rDtIEDHd0O98",
+      authDomain: "https://www.google.com",
+      projectId: "masele-33a46",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "200216185593",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+      
+      
+      var email = document.getElementById("emailUp").value;
+      var password = document.getElementById("passwordUp").value;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(function(user) {
+          
+          alert("SignUpp Successful!");
+          window.location.href=("signin.html");
+          
+        })
+        .catch(function(error) {
+          console.log(error.message);
+        });
+    
+}
+
+
+ 
+ 
+    
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
